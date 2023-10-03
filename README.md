@@ -1,5 +1,6 @@
 # tetris
 
+URL https://kiki-her.github.io/tetris/
 ## どんなApp?
 
 シンプルなテトリス。
