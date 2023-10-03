@@ -5,6 +5,7 @@ const roteteButton = document.getElementById("rotete");
 const downButton = document.getElementById("down");
 const upButton = document.getElementById("up");
 const context = canvas.getContext("2d");
+let isOver = false;
 
     //フィールドサイズ
 const FIELD_COL = 10;
@@ -145,6 +146,17 @@ const START_Y = 0
           }
         }
       }
+      if(isOver) {
+        let text = "GOOD JOB!"
+        context.font = "40px 'MS ゴシック";
+        let textW = context.measureText(text).width;
+        let x = SCREEN_W / 2 - textW / 2;
+        let y = SCREEN_H / 2 - 20;
+        context.lineWidth = 4;
+        context.strokeText(text, x, y);
+        context.fillStyle = "white";
+        context.fillText(text, x, y);
+      }
     }
 
 
@@ -186,21 +198,48 @@ function fixTetro() {
     }
 }
 
+function checkLine() {
+    let count = 0;
+    for (let y = 0; y < FIELD_ROW; y++) {
+        let flag = true;
+        for (let x = 0; x < FIELD_COL; x++) {
+            if(!field[y][x]) {
+                flag = false;
+                break;
+            }
+        }
+        if(flag) {
+            count++;
+            for(let ny = y; ny > 0; ny--) {
+                for(let nx = 0; nx < FIELD_COL; nx++) {
+                    field[ny][nx] = field[ny-1][nx];
+                }
+            }
+        }
+    }
+}
+
 function dropTetro() {
+    if(isOver) return;
      if(checkMove(0, 1)) {
         tetroY++;
     } else {
         fixTetro();
+        checkLine();
         tetroType = Math.floor(Math.random() * (TETRO_TYPES.length - 1)) + 1;
         tetro = TETRO_TYPES[tetroType]
         tetroX = START_X;
         tetroY = START_Y;
+
+        if(!checkMove(0, 0)) {
+            isOver = true;
+        }
     }
       drawAll()
 }
 
 leftButton.addEventListener("click", () => {
-    if(checkMove(-1, 0)) {
+    if(!isOver && checkMove(-1, 0)) {
         tetroX--;
         drawAll()
     }
@@ -208,20 +247,20 @@ leftButton.addEventListener("click", () => {
 }) 
 upButton.addEventListener("click", () => {
 // 上
- if(checkMove(0, -1)) {
+ if(!isOver &&checkMove(0, -1)) {
     tetroY--;
     drawAll()
     }
 
 }) 
 rightButton.addEventListener("click", () => {
-    if(checkMove(1, 0)) {
+    if(!isOver &&checkMove(1, 0)) {
         tetroX++;
         drawAll()
     }
 })  
 downButton.addEventListener("click", () => {
-     if(checkMove(0, 1)) {
+     if(!isOver &&checkMove(0, 1)) {
         tetroY++;
         drawAll()
     }
@@ -229,7 +268,7 @@ downButton.addEventListener("click", () => {
 roteteButton.addEventListener("click", () => {
 
    let newTetro = rotete(); 
-   if(checkMove(0, 0, newTetro)) {
+   if(!isOver &&checkMove(0, 0, newTetro)) {
     tetro = newTetro;
    }
 }) 
