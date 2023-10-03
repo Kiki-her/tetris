@@ -4,11 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="white" />
     <title>Tetris</title>
     <link rel="stylesheet" href="components/styles/main.css">
+    <link rel="manifest" href="manifest.json" />
+
+    <link rel="shorcut icon" href="components/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="components/images/favicon.png" />
 </head>
 
 <body>
+    <div id="header">
+        <div id="install">Install App</div>
+    </div>
     <div class="mobile">
         <div class="mobile_screen">
             <div class="outer"></div>
@@ -33,6 +41,7 @@
         </div>
     </div>
     <script src="components/scripts/main.js"></script>
+    <script src="components/scripts/pwa-handler.js"></script>
 </body>
 
 </html>

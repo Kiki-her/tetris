@@ -1,0 +1,14 @@
+{
+    "name": "Tetris",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "white",
+    "icons": [
+        {
+            "src": "/components/images/favicon.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}

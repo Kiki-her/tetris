@@ -1,4 +1,9 @@
 /* tetris  classはwebで開いた時だけ */
+#install {
+    text-decoration: underline;
+    text-decoration-color: green;
+}
+
 @media screen and (min-width: 481px) {
 
 
