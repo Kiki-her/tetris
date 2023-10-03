@@ -91,13 +91,48 @@ canvas.style.border = "4px solid #555";
       }
     }
 
-rightButton.addEventListener("click", () => {
-    tetroX++;
-    drawAll()
-})  
+
+function checkMove(mx, my) {
+    for (let y = 0; y < TETRO_SIZE; y++) {
+        for (let x = 0; x < TETRO_SIZE; x++) {
+            let nx = tetroX + mx + x;
+            let ny = tetroY + my + y;
+            if (tetro[y][x]) {
+                if(field[ny][nx] !== 0 || ny < 0 || nx < 0 || ny >= FIELD_ROW || nx >= FIELD_COL) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 leftButton.addEventListener("click", () => {
-    tetroX--;
+    if(checkMove(-1, 0)) {
+        tetroX--;
+        drawAll()
+    }
+
+}) 
+pauseButton.addEventListener("click", () => {
+// 上
+ if(checkMove(0, -1)) {
+    tetroY--;
     drawAll()
+    }
+
+}) 
+rightButton.addEventListener("click", () => {
+    if(checkMove(1, 0)) {
+        tetroX++;
+        drawAll()
+    }
+})  
+downButton.addEventListener("click", () => {
+     if(checkMove(0, 1)) {
+        tetroY++;
+        drawAll()
+    }
 }) 
 // leftSpinButton.addEventListener("click", () => {
     
@@ -105,12 +140,3 @@ leftButton.addEventListener("click", () => {
 // rightSpinButton.addEventListener("click", () => {
 
 // }) 
-downButton.addEventListener("click", () => {
-    tetroY++;
-    drawAll()
-}) 
-pauseButton.addEventListener("click", () => {
-// 上
-tetroY--;
-drawAll()
-}) 
