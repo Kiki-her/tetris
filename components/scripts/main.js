@@ -1,12 +1,13 @@
-const canvas = document.getElementById("square_canvas");
-const rightButton = document.getElementById("right");
-const leftButton = document.getElementById("left");
-const roteteButton = document.getElementById("rotete");
-const downButton = document.getElementById("down");
-const upButton = document.getElementById("up");
+const canvas = document.querySelector(".square_canvas");
+const rightButton = document.querySelector(".right");
+const leftButton = document.querySelector(".left");
+const roteteButton = document.querySelector(".rotete");
+const downButton = document.querySelector(".down");
+const upButton = document.querySelector(".up");
 const context = canvas.getContext("2d");
 const startButton = document.getElementById("start")
-const homeSection = document.getElementById("home");
+const homeSection = document.querySelector(".home");
+const tetrisSection = document.querySelector(".tetris");
 let isOver = false;
 
     //フィールドサイズ
@@ -123,7 +124,7 @@ const START_Y = 0
 
       context.fillStyle = TETRO_COLORS[c];
       context.fillRect(px, py, BLOCK_SIZE, BLOCK_SIZE);
-      context.strokeStyle = "black";
+      context.strokeStyle = "#524748";
       context.strokeRect(px, py, BLOCK_SIZE, BLOCK_SIZE);
     }
     //全部を描画
@@ -147,7 +148,7 @@ const START_Y = 0
       }
       if(isOver) {
         let text = "GOOD JOB!"
-        context.font = "40px 'MS ゴシック";
+        context.font = "25px 'MS ゴシック";
         let textW = context.measureText(text).width;
         let x = SCREEN_W / 2 - textW / 2;
         let y = SCREEN_H / 2 - 20;
@@ -155,6 +156,10 @@ const START_Y = 0
         context.strokeText(text, x, y);
         context.fillStyle = "white";
         context.fillText(text, x, y);
+        setTimeout(() => {
+            tetrisSection.classList.add("hide");
+            homeSection.classList.remove("hide");
+        }, 5000)
       }
     }
 
@@ -273,6 +278,7 @@ roteteButton.addEventListener("click", () => {
 }) 
 
 startButton.addEventListener("click", () => {
-    homeSection.style.display = "none";
+    homeSection.classList.add("hide");
+    tetrisSection.classList.remove("hide");
     setInterval(dropTetro, GAME_SPEED);
 })

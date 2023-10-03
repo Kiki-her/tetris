@@ -9,18 +9,29 @@
 </head>
 
 <body>
-    <section id="home">
-        <div>テトリスには、つらい記憶やこわい記憶をよわくする効果があります</div>
-        <button id="start">START</button>
-    </section>
-    <canvas id="square_canvas"></canvas>
-    <section id="button_section">
-        <button id="left">⬅️</button>
-        <button id="down">⬇️</button>
-        <button id="rotete">💫</button>
-        <button id="up">⬆️</button>
-        <button id="right">➡️</button>
-    </section>
+    <div class="mobile">
+        <div class="mobile_screen">
+            <div class="outer"></div>
+            <section class="screen_body">
+                <section class="home">
+
+                    <div class="info">テトリスには<br>つらかった記憶<br>こわかった記憶を<br>よわくする効果があります<br><br>今日もゆっくり<br>やってみましょう
+                    </div>
+                    <button id="start">START</button>
+                </section>
+                <section class="tetris hide">
+                    <canvas class="square_canvas"></canvas>
+                    <section class="button_section">
+                        <button class="left btn">⬅️</button>
+                        <button class="down btn">⬇️</button>
+                        <button class="rotete btn">♻️</button>
+                        <button class="up btn">⬆️</button>
+                        <button class="right btn">➡️</button>
+                    </section>
+                </section>
+            </section>
+        </div>
+    </div>
     <script src="components/scripts/main.js"></script>
 </body>
 
