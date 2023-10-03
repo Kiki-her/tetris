@@ -157,8 +157,7 @@ const START_Y = 0
         context.fillStyle = "white";
         context.fillText(text, x, y);
         setTimeout(() => {
-            tetrisSection.classList.add("hide");
-            homeSection.classList.remove("hide");
+            location.reload();
         }, 5000)
       }
     }
