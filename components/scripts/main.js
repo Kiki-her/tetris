@@ -5,6 +5,8 @@ const roteteButton = document.getElementById("rotete");
 const downButton = document.getElementById("down");
 const upButton = document.getElementById("up");
 const context = canvas.getContext("2d");
+const startButton = document.getElementById("start")
+const homeSection = document.getElementById("home");
 let isOver = false;
 
     //フィールドサイズ
@@ -28,14 +30,14 @@ canvas.height = SCREEN_H;
 canvas.style.border = "4px solid #555";
 
 const TETRO_COLORS = [
-    "#57CC99",
-    "#38A3A5",
-    "#C7F9CC",
-    "#6CDD99",
-    "#80ED99",
-    "#80ED99",
-    "#80ED99",
-    "#80ED99",
+    "#0097A7",
+    "#00BCD4",
+    "#B2EBF2",
+    "#8BC34A",
+    "#009688",
+    "#62ab90",
+    "#BDBDBD",
+    "#F8BBD0",
 ]
 
 //tetromimo本体 I, L, J, T, O, Z, S
@@ -99,7 +101,7 @@ const START_Y = 0
 
     init();
     drawAll();
-    setInterval(dropTetro, GAME_SPEED);
+    // setInterval(dropTetro, GAME_SPEED);
 
     //初期化
     function init() {
@@ -110,10 +112,7 @@ const START_Y = 0
           field[y][x] = 0;
         }
       }
-      //test
-      field[5][8] = 1;
-      field[19][9] = 1;
-      field[19][0] = 1;
+
     }
 
 
@@ -273,3 +272,7 @@ roteteButton.addEventListener("click", () => {
    }
 }) 
 
+startButton.addEventListener("click", () => {
+    homeSection.style.display = "none";
+    setInterval(dropTetro, GAME_SPEED);
+})
