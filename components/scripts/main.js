@@ -1,4 +1,5 @@
 const board = document.getElementById('board');
+const startButton = document.getElementById("start_button")
 
 for (let i = 0; i < 200; i++) {
     createCells(board);
@@ -42,6 +43,9 @@ const tetrominoes = [
     ]
   ];
 
+startButton.addEventListener("click", () => {
+    gaming();
+})
 
 
 
@@ -76,10 +80,24 @@ function isCollision(board, piece, offsetX, offsetY) {
 
 /* 移動 */
 function movePiece(board, piece, offsetX, offsetY) {
-    if (collides(board, piece, offsetX, offsetY)) {
+    if (isCollision(board, piece, offsetX, offsetY)) {
         return false;
       }
-      // Update the board with the new position of the piece
+    
+    const newBoard = [...board];
+    for (let i = 0; i < piece.length; i++) {
+        for (let j = 0; j < piece[i].length; j++) {
+          if (piece[i][j]) {
+            newBoard[i + offsetY][j + offsetX] = 1;
+          }
+        }
+      }
+    
+      for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+          board[i][j] = newBoard[i][j];
+        }
+      }
       return true;
 }
 

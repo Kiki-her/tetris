@@ -21,3 +21,11 @@ body {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+
+#start_button {
+    position: absolute;
+    padding: 20px;
+    width: 200px;
+    bottom: 45px;
+}
