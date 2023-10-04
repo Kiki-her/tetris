@@ -11,16 +11,6 @@
 
     <link rel="shorcut icon" href="components/images/favicon.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="components/images/favicon.png" />
-    <script>
-        let tap = 0;
-        document.documentElement.addEventListener('touchend', function (e) {
-            const now = new Date().getTime();
-            if ((now - tap) < 350) {
-                e.preventDefault();
-            }
-            tap = now;
-        }, false);
-    </script>
 </head>
 
 <body>

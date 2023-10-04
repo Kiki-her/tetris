@@ -1,4 +1,8 @@
 /* tetris  classはwebで開いた時だけ */
+html {
+    touch-action: manipulation;
+}
+
 #install {
     text-decoration: underline;
     text-decoration-color: green;
